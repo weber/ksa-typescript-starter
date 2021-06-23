@@ -1,0 +1,57 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "module": "esnext",
+    "target": "es5",
+    "lib": [
+      "dom",
+      "es2018"
+    ],
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "sourceMap": true,
+    "stripInternal": true,
+    "declaration": true,
+    "declarationMap": true,
+    "declarationDir": "dist/types",
+    "outDir": "dist/esm5",
+    "resolveJsonModule": true,
+    "importHelpers": true,
+    "typeRoots": [
+      "node_modules/@types",
+      "node_modules/@typed-f",
+      "node_modules/@types/ramda",
+      "node_modules/ts-jest/dist/types",
+      "node_modules/@types/jest",
+      "node_modules/@types/mocha"
+    ],
+    "types": [ "rxjs", "node", "jest" ],
+    "plugins": [
+      {
+        "name": "typescript-tslint-plugin",
+        "alwaysShowRuleFailuresAsWarnings": false
+      }
+    ],
+
+    "noImplicitAny": true
+  },
+  "include": [
+    "./src",
+    "**/*.spec.ts"
+
+  ],
+  "compileOnSave": false,
+  "baseUrl": ".",
+  "paths": {
+    "jszip": [
+      "./node_modules/jszip/dist/jszip.min.js"
+    ],
+    "@root/*": ["src/*"],
+    "@env/*": ["src/environments/*"]
+
+  }
+}
