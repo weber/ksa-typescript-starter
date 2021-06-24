@@ -2,15 +2,22 @@
   "compilerOptions": {
     "moduleResolution": "node",
     "module": "esnext",
-    "target": "es5",
+    "target": "es2020",
     "lib": [
       "dom",
-      "es2018"
+      "es2020"
     ],
     "strict": true,
+    "strictNullChecks": true,
+    "noUncheckedIndexedAccess": true,
+    "alwaysStrict": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "jsx": "react",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "sourceMap": true,
@@ -36,13 +43,15 @@
         "alwaysShowRuleFailuresAsWarnings": false
       }
     ],
-
-    "noImplicitAny": true
   },
-  "include": [
-    "./src",
-    "**/*.spec.ts"
 
+  "include": [
+    "**/*.spec.ts",
+    "src/**/*.ts",
+    "test/**/*.ts",
+    "typings/**/*.ts",
+    "src/**/*.js",
+    "app-test/**/*.ts"
   ],
   "compileOnSave": false,
   "baseUrl": ".",

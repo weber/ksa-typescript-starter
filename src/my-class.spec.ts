@@ -5,7 +5,7 @@ jest.mock('./environment.ts', () => ({
   IS_PROD: false,
 }))
 
-describe('MyClass проверка ', () => {
+describe('MyClass проверка', () => {
   let client: MyClass
 
   beforeEach(() => {

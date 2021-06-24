@@ -34,26 +34,15 @@ module.exports = {
                 test: /\.js$/,
                 use: 'source-map-loader'
             },
-            {
-                enforce: 'pre',
-                test: /\.ts$/,
-                exclude: /node_modules/,
-                use: 'tslint-loader'
-            },
 
-            /****************
-            * LOADERS
-            *****************/
-            {
-                test: /\.ts$/,
-                exclude: [ /node_modules/ ],
-                use: 'awesome-typescript-loader'
-            }
+          {
+            test: /\.ts?$/,
+            use: 'ts-loader',
+            exclude: /node_modules/,
+          }
         ]
     },
 
-    devtool: 'cheap-module-source-map',
-    devServer: {
-    }
+    devtool: 'cheap-module-source-map'
 };
 

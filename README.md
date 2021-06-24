@@ -23,7 +23,7 @@
 ## 🔧 Installation
 
 ```sh
-$ npm i @me-component/my-class
+$ npm i @monitel/my-class
 ```
 
 ## 🎬 Getting started

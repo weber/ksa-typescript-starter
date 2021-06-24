@@ -1,3 +1,4 @@
+
 export class MyClass {
   title: string
 
