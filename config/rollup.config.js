@@ -4,8 +4,7 @@ import json from '@rollup/plugin-json'
 import commonjs from '@rollup/plugin-commonjs'
 import replace from '@rollup/plugin-replace'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
-import { uglify } from 'rollup-plugin-uglify'
-import { terser } from 'rollup-plugin-terser'
+import { terser } from "rollup-plugin-terser";
 import { getIfUtils, removeEmpty } from 'webpack-config-utils'
 
 import pkg from '../package.json'
@@ -72,6 +71,8 @@ const plugins = /** @type {Plugin[]} */ ([
     // @ts-ignore
     __buildVersion: 15
   }),
+
+  terser()
 ])
 
 /**

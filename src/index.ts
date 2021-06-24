@@ -1,1 +1,3 @@
-export { MyClass } from './my-class'
+export { MyClass } from '@lib/my-class'
+
+

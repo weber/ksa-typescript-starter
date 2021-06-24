@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="" width="597" alt="AuthSessionClient">
+  <img src="" width="597" alt="ksa-typescript-starter">
 </p>
 
 # MyClass
@@ -64,4 +64,4 @@ Today we're gonna build Foo....
 
 ## 🥂 License
 
-[MIT](./LICENSE.md) as always
+[Apache License](./LICENSE.md) as always

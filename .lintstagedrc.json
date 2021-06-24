@@ -1,0 +1,10 @@
+{
+  "**/*.{ts,tsx,js,jsx,css,scss,sass,less,md}": [
+    "git add"
+  ],
+  "src/**/*.{ts,tsx}": [
+    "npm run lint:fix",
+    "git add"
+  ],
+  "*.ts": "eslint --cache --fix"
+}

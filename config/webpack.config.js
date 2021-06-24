@@ -1,8 +1,11 @@
 const path = require('path');
 const webpack = require('webpack');
+const pkg = require('../package.json')
+const ROOT = path.resolve( __dirname, '../', 'app-test' );
+const DESTINATION = path.resolve( __dirname, '../', 'dist-apptest' );
 
-const ROOT = path.resolve( __dirname, 'app-test' );
-const DESTINATION = path.resolve( __dirname, 'dist-apptest' );
+let version = `${pkg.version}`
+let nameApp = `${pkg.name}`
 
 module.exports = {
     context: ROOT,
@@ -42,6 +45,13 @@ module.exports = {
           }
         ]
     },
+    plugins: [
+      new webpack.HotModuleReplacementPlugin(),
+      new webpack.DefinePlugin({
+        'VERSION': `'${version}'`,
+        'NAMEAPP': `'${nameApp}'`
+      })
+    ],
 
     devtool: 'cheap-module-source-map'
 };

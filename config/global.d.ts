@@ -7,6 +7,15 @@ declare namespace NodeJS {
   }
 }
 
+declare global {
+
+  interface Window {
+    [key: string]: any
+    VERSION: string
+  }
+
+
+}
 // ============================
 // Rollup plugins without types
 // ============================
@@ -51,10 +60,7 @@ declare module 'rollup-plugin-replace' {
   const plugin: RollupPluginImpl
   export default plugin
 }
-declare module 'rollup-plugin-uglify' {
-  const uglify: RollupPluginImpl
-  export { uglify }
-}
+
 declare module 'rollup-plugin-terser' {
   const terser: RollupPluginImpl
   export { terser }

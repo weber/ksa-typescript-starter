@@ -1,5 +1,7 @@
 {
+  "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": ".",
     "moduleResolution": "node",
     "module": "esnext",
     "target": "es2020",
@@ -43,6 +45,17 @@
         "alwaysShowRuleFailuresAsWarnings": false
       }
     ],
+
+
+
+    "paths": {
+      "jszip": [
+        "./node_modules/jszip/dist/jszip.min.js"
+      ],
+      "@root/*": ["src/*"],
+      "@env/*": ["src/environments/*"],
+      "@lib/*": ["src/lib/*"]
+    }
   },
 
   "include": [
@@ -51,16 +64,7 @@
     "test/**/*.ts",
     "typings/**/*.ts",
     "src/**/*.js",
-    "app-test/**/*.ts"
-  ],
-  "compileOnSave": false,
-  "baseUrl": ".",
-  "paths": {
-    "jszip": [
-      "./node_modules/jszip/dist/jszip.min.js"
-    ],
-    "@root/*": ["src/*"],
-    "@env/*": ["src/environments/*"]
-
-  }
+    "app-test/**/*.ts",
+    "src/**/*.d.ts"
+  ]
 }

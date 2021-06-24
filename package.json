@@ -15,14 +15,14 @@
     "url": "https://github.com/me-component/auth-session-client"
   },
   "author": "Кириченко Сергей <Sergey.Kirichenko@monitel.com>",
-  "license": "MIT",
+  "license": "Apache License",
   "engines": {
     "node": ">=12",
     "npm": ">=6.0",
     "yarn": "^1.0"
   },
   "scripts": {
-    "start": "webpack serve --config webpack.config.js --port 3335  --inline --progress --content-base app-test/ --mode development",
+    "start": "webpack serve --config config/webpack.config.js --port 3335  --inline --progress --content-base app-test/ --mode development",
     "cleanup": "shx rm -rf dist",
     "prebuild": "npm run cleanup && npm run verify",
     "build": "tsc && tsc --target es2018 --outDir dist/esm2015 && rollup -c config/rollup.config.js && rollup -c config/rollup.config.js --environment NODE_ENV:production",
@@ -41,8 +41,9 @@
     "lint:fix": "npm run lint -- --fix",
     "prerelease": "npm run build",
     "release": "standard-version",
-    "postrelease": "node scripts/copy && node scripts/build && npm run release:github && npm run release:npm",
-    "release:github": "git push --no-verify --follow-tags origin master",
+    "postrelease": "node scripts/copy && node scripts/build && npm run release:azure && npm run release:pub",
+    "release:azure": "git push --no-verify --follow-tags origin master",
+    "release:pub": "cd ./dist && pnpm pack && npm publish",
     "release:npm": "npm publish dist",
     "release:preflight": "npm pack ./dist --dry-run",
     "size": "node scripts/file-size ./dist/bundles/index.umd.min.js ./dist/bundles/index.esm.min.js"
@@ -52,27 +53,26 @@
       "path": "cz-conventional-changelog"
     }
   },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint --config config/commitlint.config.js -E HUSKY_GIT_PARAMS",
-      "pre-commit--": "lint-staged",
-      "pre-push": "npm run style && npm test -- --bail --onlyChanged"
-    }
-  },
-  "lint-staged": {
-    "**/*.{ts,tsx,js,jsx,css,scss,sass,less,md}": [
-      "git add"
-    ],
-    "src/**/*.{ts,tsx}": [
-      "npm run lint:fix",
-      "git add"
-    ]
-  },
   "peerDependencies": {
     "tslib": "^2.3.0"
   },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run style && npm test -- --bail --onlyChanged",
+      "commit-msg": "commitlint --config config/commitlint.config.js -E HUSKY_GIT_PARAMS"
+    }
+  },
   "dependencies": {
-    "rxjs": "^7.1.0"
+    "@typed-f/either": "0.3.8",
+    "@typed-f/function": "0.3.8",
+    "@typed-f/lens": "0.3.8",
+    "@typed-f/maybe": "0.3.8",
+    "@types/ramda": "0.27.41",
+    "date-fns": "2.22.1",
+    "fp-ts": "2.10.5",
+    "ramda": "0.27.1",
+    "rxjs": "^7.1.0",
+    "subsink": "1.0.2"
   },
   "devDependencies": {
     "@angular-eslint/eslint-plugin": "12.2.0",
@@ -105,6 +105,7 @@
     "cz-conventional-changelog": "3.3.0",
     "eslint": "7.29.0",
     "eslint-config-prettier": "8.3.0",
+    "eslint-import-resolver-alias": "1.1.2",
     "eslint-plugin-etc": "1.5.2",
     "eslint-plugin-import": "2.23.4",
     "eslint-plugin-jest": "24.3.6",
@@ -128,7 +129,6 @@
     "rollup": "2.52.2",
     "rollup-plugin-sourcemaps": "0.6.3",
     "rollup-plugin-terser": "7.0.2",
-    "rollup-plugin-uglify": "6.0.4",
     "shx": "0.3.3",
     "source-map-loader": "3.0.0",
     "standard-version": "9.3.0",
