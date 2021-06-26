@@ -20,8 +20,8 @@ module.exports = {
   },
   "env": {
       "browser": true,
-      "node": true
-    // "jest/globals": true
+      "node": true,
+      "jest/globals": true
   },
   "extends": [
     "eslint:recommended",
@@ -52,9 +52,9 @@ module.exports = {
       "@angular-eslint/eslint-plugin",
       "eslint-plugin-jsdoc",
       "@typescript-eslint",
-      "total-functions"
-      // "eslint-plugin-jest",
-     // "jest",
+      "total-functions",
+      "eslint-plugin-jest",
+      "jest"
   ],
   "rules": {
       "@angular-eslint/component-selector": "off",

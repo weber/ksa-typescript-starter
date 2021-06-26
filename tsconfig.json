@@ -49,6 +49,7 @@
 
 
     "paths": {
+      "tslib" : ["./node_modules/tslib/tslib.d.ts"],
       "jszip": [
         "./node_modules/jszip/dist/jszip.min.js"
       ],
