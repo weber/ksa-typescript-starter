@@ -60,7 +60,7 @@ function createDistPackageJson(packageConfig) {
     engines,
     config,
     husky,
-    'lint-staged': lintStaged,
+    //'lint-staged': lintStaged,
     ...distPackageJson
   } = packageConfig
 

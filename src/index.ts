@@ -1,3 +1,4 @@
-export { MyClass } from '@lib/my-class'
+import './common.scss'
+export { MyClass } from './lib/my-class'
 
 

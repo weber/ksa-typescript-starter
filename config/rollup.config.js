@@ -6,7 +6,8 @@ import replace from '@rollup/plugin-replace'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import { terser } from "rollup-plugin-terser";
 import { getIfUtils, removeEmpty } from 'webpack-config-utils'
-
+//import typescript from '@rollup/plugin-typescript';
+import scss from 'rollup-plugin-scss'
 import pkg from '../package.json'
 const {
   pascalCase,
@@ -55,6 +56,10 @@ const plugins = /** @type {Plugin[]} */ ([
   // Allow bundling cjs modules (unlike webpack, rollup doesn't understand cjs)
   commonjs(),
 
+  scss({
+    output: "./dist/css/style.css",
+    failOnError: true,
+  }),,
   // Allow node_modules resolution, so you can use 'external' to control
   // which external modules to include in the bundle
   // https://github.com/rollup/rollup-plugin-node-resolve#usage
@@ -65,13 +70,13 @@ const plugins = /** @type {Plugin[]} */ ([
 
   // properly set process.env.NODE_ENV within `./environment.ts`
   replace({
+    preventAssignment: true,
     exclude: 'node_modules/**',
     'process.env.NODE_ENV': JSON.stringify(env),
-    __buildDate__: () => JSON.stringify(new Date()),
-    // @ts-ignore
-    __buildVersion: 15
+    __buildDate__: () => JSON.stringify(new Date())
   }),
 
+  // typescript(),
   terser()
 ])
 
@@ -91,7 +96,7 @@ const CommonConfig = {
  */
 const UMDconfig = {
   ...CommonConfig,
-  input: resolve(PATHS.entry.esm5, 'index.js'),
+  input: resolve(PATHS.entry.esm2015, 'index.js'),
   output: {
     file: getOutputFileName(
       resolve(PATHS.bundles, 'index.umd.js'),
@@ -100,6 +105,9 @@ const UMDconfig = {
     format: 'umd',
     name: LIB_NAME,
     sourcemap: true,
+    globals:{
+      "tslib": "tslib"
+    }
   },
   plugins: removeEmpty(
     /** @type {Plugin[]} */ ([...plugins, ifProduction(terser())])
@@ -120,6 +128,9 @@ const FESMconfig = {
       ),
       format: 'es',
       sourcemap: true,
+      globals:{
+        "tslib": "tslib"
+      }
     },
   ],
   plugins: removeEmpty(
@@ -127,4 +138,5 @@ const FESMconfig = {
   ),
 }
 
+// export default [CommonConfig]
 export default [UMDconfig, FESMconfig]

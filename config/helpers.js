@@ -20,7 +20,12 @@ function camelCaseToDash(myStr) {
  * @param {string} myStr
  */
 function dashToCamelCase(myStr) {
-  return myStr.replace(/-([a-z])/g, (g) => g[1].toUpperCase())
+  return myStr.replace(/-([a-z])/g, (g) => {
+    if (g.length && g[1] !== undefined) {
+      return g[1].toUpperCase()
+    }
+    return  g
+  })
 }
 
 /**

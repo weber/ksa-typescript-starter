@@ -2,6 +2,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": ".",
+    "rootDir": "src",
     "moduleResolution": "node",
     "module": "esnext",
     "target": "es2018",
@@ -25,7 +26,8 @@
     "sourceMap": true,
     "stripInternal": true,
     "declaration": true,
-    "declarationMap": true,
+    "declarationMap": false,
+
     "declarationDir": "dist/types",
     "outDir": "dist/esm2015",
     "resolveJsonModule": true,
@@ -63,12 +65,10 @@
   },
 
   "include": [
-    "**/*.spec.ts",
     "src/**/*.ts",
-    "test/**/*.ts",
-    "typings/**/*.ts",
-    "src/**/*.js",
-    "app-test/**/*.ts",
     "src/**/*.d.ts"
+  ],
+  "exclude": [
+    "app-test/**/*.ts"
   ]
 }
