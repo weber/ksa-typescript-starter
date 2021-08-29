@@ -5,23 +5,6 @@
   "keywords": [
     ""
   ],
-  "main": "./bundles/index.umd.js",
-  "module": "./esm5/index.js",
-  "es2015": "./esm2015/index.js",
-  "typings": "./types/index.d.ts",
-  "sideEffects": false,
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/me-component/auth-session-client"
-  },
-  "author": "Кириченко Сергей <Sergey.Kirichenko@monitel.com>",
-  "license": "Apache License",
-  "engines": {
-    "node": ">=12",
-    "npm": ">=6.0",
-    "yarn": "^1.0",
-    "pnpm": "^6.0"
-  },
   "scripts": {
     "start": "webpack serve --config config/webpack.config.js --port 3335  --inline --progress --content-base app-test/ --mode development",
     "cleanup": "shx rm -rf dist",
@@ -30,7 +13,8 @@
     "compile": "rollup -c config/rollup.config.js && rollup -c config/rollup.config.js --environment NODE_ENV:production",
     "build": "tsc --project tsconfig.production.json && yarn run compile",
     "postbuild": "node scripts/copy && npm run size",
-    "docs": "typedoc -p . --theme minimal --target 'es6' --excludeNotExported --excludePrivate --ignoreCompilerErrors --exclude \"**/src/**/__tests__/*.*\" --out docs src/",
+    "compodoc": "compodoc -p tsconfig.json",
+    "docs": "typedoc src/index.ts --theme ./node_modules/typedoc-neo-theme/bin/default --excludePrivate  --exclude \"**/src/**/*.spec.*\" --out docs src/",
     "test": "jest  -c ./config/jest.config.js",
     "test:watch": "npm t -- --watch",
     "test:coverage": "npm t -- --coverage",
@@ -51,6 +35,26 @@
     "release:preflight": "npm pack ./dist --dry-run",
     "size": "node scripts/file-size ./dist/bundles/index.umd.min.js ./dist/bundles/index.esm.min.js"
   },
+  "main": "./bundles/index.umd.js",
+  "module": "./esm5/index.js",
+  "es2015": "./esm2015/index.js",
+  "typings": "./types/index.d.ts",
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "Кириченко Сергей <Sergey.Kirichenko@monitel.com>",
+  "license": "Apache License",
+  "private": true,
+  "engines": {
+    "node": ">=12",
+    "npm": ">=6.0",
+    "yarn": "^1.0"
+  },
+  "wallaby": {
+    "autoDetect": true
+  },
   "config": {
     "commitizen": {
       "path": "cz-conventional-changelog"
@@ -66,10 +70,12 @@
     }
   },
   "dependencies": {
+    "@compodoc/compodoc": "1.1.14",
     "date-fns": "^2.22.1",
     "fp-ts": "^2.10.5",
     "ramda": "^0.27.1",
-    "rxjs": "^7.1.0",
+    "rxjs": "^7.2.0",
+
     "subsink": "^1.0.2"
   },
   "devDependencies": {
@@ -100,10 +106,10 @@
     "@types/node": "^16.0.0",
     "@types/prettier": "^2.3.1",
     "@types/ramda": "^0.27.42",
-    "@types/shelljs": "^0.8.8",
+    "@types/shelljs": "^0.8.9",
     "@types/webpack-config-utils": "^2.3.1",
-    "@typescript-eslint/eslint-plugin": "^4.28.1",
-    "@typescript-eslint/parser": "^4.28.1",
+    "@typescript-eslint/eslint-plugin": "^4.28.2",
+    "@typescript-eslint/parser": "^4.28.2",
     "brotli-size": "^4.0.0",
     "commitizen": "^4.2.4",
     "cross-var": "^1.1.0",
@@ -117,24 +123,26 @@
     "eslint-plugin-functional": "3.2.1",
     "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-jest": "^24.3.6",
-    "eslint-plugin-jsdoc": "^35.4.1",
+    "eslint-plugin-jsdoc": "35.5.1",
     "eslint-plugin-prefer-arrow": "^1.2.3",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-regexp": "^0.13.0",
-    "eslint-plugin-sonarjs": "^0.8.0-125",
+    "eslint-plugin-require-jsdoc-except": "1.5.0",
+    "eslint-plugin-sonarjs": "^0.9.1",
     "eslint-plugin-total-functions": "^4.7.2",
     "eslint-plugin-unicorn": "^34.0.1",
     "gzip-size": "^6.0.0",
-    "husky": "^7.0.0",
+    "husky": "^7.0.1",
     "identity-obj-proxy": "3.0.0",
     "jest": "^27.0.6",
     "jest-watch-typeahead": "^0.6.4",
     "jszip": "^3.6.0",
     "kleur": "^4.1.4",
     "lint-staged": "^11.0.0",
-    "mini-css-extract-plugin": "2.0.0",
+    "mini-css-extract-plugin": "2.1.0",
     "node-sass": "6.0.1",
+    "postcss-loader": "6.1.1",
     "prettier": "^2.3.2",
     "pretty-bytes": "^5.6.0",
     "rollup": "^2.52.7",
@@ -147,13 +155,15 @@
     "source-map-loader": "^3.0.0",
     "standard-version": "^9.3.0",
     "style-loader": "3.0.0",
+    "sugarss": "4.0.1",
     "ts-jest": "^27.0.3",
-    "ts-loader": "^9.2.3",
+    "ts-loader": "9.2.3",
     "tslib": "^2.3.0",
     "typedoc": "^0.21.2",
+    "typedoc-neo-theme": "1.1.1",
     "typescript": "^4.3.5",
     "typescript-eslint-language-service": "4.1.4",
-    "webpack": "^5.42.0",
+    "webpack": "^5.43.0",
     "webpack-cli": "^4.7.2",
     "webpack-config-utils": "^2.3.1",
     "webpack-dev-server": "^3.11.2"

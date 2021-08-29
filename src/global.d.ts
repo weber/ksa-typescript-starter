@@ -1,1 +1,2 @@
-export type BabelConfig = any
+
+export type Rec = Record<string, unknown>

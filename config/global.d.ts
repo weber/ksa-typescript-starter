@@ -7,6 +7,9 @@ declare namespace NodeJS {
   }
 }
 
+export type BabelConfig = any
+declare module '*.scss';
+
 declare global {
 
   interface Window {

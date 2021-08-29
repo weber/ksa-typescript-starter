@@ -1,5 +1,5 @@
 const path = require('path');
-const miniCss = require('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
 const pkg = require('../package.json')
 const ROOT = path.resolve( __dirname, '../', 'app-test' );
@@ -21,13 +21,27 @@ module.exports = {
     },
 
     resolve: {
-        extensions: ['.ts', '.js', '.scss'],
+        extensions: ['.ts', '.js', '.scss', 'css'],
         modules: [
             ROOT,
             'node_modules'
         ]
     },
 
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        styles: {
+          name: "styles",
+          type: "css/mini-extract",
+          // For webpack@4
+          // test: /\.css$/,
+          chunks: "all",
+          enforce: true,
+        },
+      },
+    },
+  },
     module: {
         rules: [
             /****************
@@ -47,19 +61,29 @@ module.exports = {
           {
             test: /\.s[ac]ss$/i,
             use: [
-              // Creates `style` nodes from JS strings
               "style-loader",
               // Translates CSS into CommonJS
               "css-loader",
               // Compiles Sass to CSS
+              //MiniCssExtractPlugin.loader,
+              // Creates `style` nodes from JS strings
+              /*{
+                loader: 'css-loader', // translates CSS into CommonJS
+                options: {
+                  importLoaders: 1
+                }
+              },*/
+              'postcss-loader',
+              // Compiles Sass to CSS
               "sass-loader",
             ],
-          },
+          }
         ]
     },
     plugins: [
-      new miniCss({
-        filename: 'style.css',
+      new MiniCssExtractPlugin({
+        filename: "[name].css",
+        chunkFilename: "[id].css",
       }),
       new webpack.HotModuleReplacementPlugin(),
       new webpack.DefinePlugin({

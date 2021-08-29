@@ -18,7 +18,7 @@ module.exports = {
     //"plugin:jest/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
-    "plugin:jsdoc/recommended",
+
     'plugin:promise/recommended',
     'plugin:sonarjs/recommended',
     'plugin:import/warnings',
@@ -50,22 +50,9 @@ module.exports = {
     "@typescript-eslint",
     "total-functions",
     "eslint-plugin-jest",
-    "sonarjs",
-    "jsdoc",
-    "require-jsdoc-except",
     "jest"
   ],
   "rules": {
-    "require-jsdoc-except/require-jsdoc": [1, {
-      "require": {
-        "FunctionDeclaration": true,
-        "MethodDefinition": true,
-        "ClassDeclaration": false,
-        "ArrowFunctionExpression": true,
-        "FunctionExpression": true
-      },
-      "ignore": ["constructor"],
-    }],
     "@angular-eslint/component-selector": "off",
     "@angular-eslint/no-output-on-prefix": "off",
     "@typescript-eslint/adjacent-overload-signatures": "error",
@@ -74,7 +61,6 @@ module.exports = {
     }],
     "init-declarations": "error",
     "@typescript-eslint/init-declarations": ["error"],
-    "@typescript-eslint/no-unsafe-return": ["error"],
 
     "@typescript-eslint/no-magic-numbers": ["error", {
       "ignoreEnums": true,
@@ -117,17 +103,6 @@ module.exports = {
     "unicorn/import-style": "error",
     "unicorn/import-index": "error",
     "@typescript-eslint/await-thenable": "error",
-    "@typescript-eslint/typedef": ["error", {
-      "call-signature": true,
-      "arrayDestructuring": true,
-      "arrowParameter": true,
-      "memberVariableDeclaration": true,
-      "objectDestructuring": true,
-      "parameter": true,
-      "propertyDeclaration": true,
-      "variableDeclaration": true,
-      "variableDeclarationIgnoreFunction": true,
-    }],
     "@typescript-eslint/ban-tslint-comment": "error",
     "@typescript-eslint/ban-ts-comment": "error",
     "@typescript-eslint/brace-style": ["error"],
@@ -185,8 +160,7 @@ module.exports = {
       {"selector": "variableLike", "format": ["camelCase"]},
       {
         "selector": "interface",
-        "format": ["PascalCase"],
-        "prefix": ["I"]
+        "format": ["PascalCase"]
       },
       {
         "selector": "variable",
@@ -198,6 +172,8 @@ module.exports = {
         "modifiers": ["exported"],
         "format": ["UPPER_CASE", "PascalCase", "camelCase"]
       },
+
+
       /*{
         "selector": "typeParameter",
         "format": ["PascalCase"],
@@ -211,8 +187,7 @@ module.exports = {
       },
       {
         "selector": "enum",
-        "format": ["UPPER_CASE", "PascalCase"],
-        "prefix": ["E"]
+        "format": ["UPPER_CASE", "PascalCase"]
       }
     ],
     "@typescript-eslint/no-empty-function": "off",
@@ -241,7 +216,7 @@ module.exports = {
     ],
     "@typescript-eslint/semi": [
       "error",
-      "never"
+      "always"
     ],
     "@typescript-eslint/triple-slash-reference": [
       "error",
@@ -253,7 +228,6 @@ module.exports = {
     ],
     "@typescript-eslint/type-annotation-spacing": "error",
     "@typescript-eslint/unified-signatures": "error",
-    "@typescript-eslint/explicit-function-return-type": ["error"],
     "arrow-parens": [
       "off",
       "always"
@@ -335,12 +309,7 @@ module.exports = {
     "no-debugger": "error",
     "no-duplicate-imports": "error",
     "no-empty": "off",
-    "@typescript-eslint/no-unused-vars": [
-      "error",
-      {
-        "vars": "all",
-        "varsIgnorePattern": "[IET]\\w+"
-      }],
+    "@typescript-eslint/no-unused-vars": ["error"],
 
     "no-unused-vars": "off",
     "no-eval": "error",
