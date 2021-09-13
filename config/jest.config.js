@@ -2,7 +2,7 @@ const config = {
   preset: 'ts-jest',
   rootDir: '..',
   testMatch: ['**/+(*.)+(spec|test).+(ts|js)?(x)'],
-  testPathIgnorePatterns: ['dist', "/node_modules/"],
+  testPathIgnorePatterns: ['/dist/', "/node_modules/"],
   coverageThreshold: {
     global: {
       branches: 80,

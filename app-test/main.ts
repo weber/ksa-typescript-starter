@@ -55,3 +55,15 @@ function proxify<T> (o: T): Proxify<T> {
 
 let properties = { rooms: 4 }
 let proxyProperties = proxify(properties)*/
+
+
+import { fromEvent } from 'rxjs'
+import { scan } from 'rxjs/operators'
+
+const INCREMENT_NUMBER: number = 2
+const START_INCREMENT_NUMBER: number = 0
+fromEvent(document, 'click')
+  .pipe(
+    scan((count: number) => count + INCREMENT_NUMBER, START_INCREMENT_NUMBER)
+  )
+  .subscribe((count: number) => console.log(`Clicked ${count} times`))

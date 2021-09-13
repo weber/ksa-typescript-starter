@@ -11,6 +11,12 @@ let nameApp = `${pkg.name}`
 module.exports = {
     context: ROOT,
 
+
+  devServer: {
+    contentBase: [path.join(__dirname, '../app-test'), path.join(__dirname, '../src/assets')],
+    compress: true,
+    port: 9000
+  },
     entry: {
         'main': './main.ts'
     },

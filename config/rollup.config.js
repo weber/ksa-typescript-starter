@@ -5,6 +5,7 @@ import commonjs from '@rollup/plugin-commonjs'
 import replace from '@rollup/plugin-replace'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import { terser } from "rollup-plugin-terser";
+import copy from 'rollup-plugin-copy'
 import { getIfUtils, removeEmpty } from 'webpack-config-utils'
 //import typescript from '@rollup/plugin-typescript';
 import scss from 'rollup-plugin-scss'
@@ -53,13 +54,16 @@ const plugins = /** @type {Plugin[]} */ ([
   // Allow json resolution
   json(),
 
+  copy({
+    targets: [{ src: 'src/assets/*', dest: 'dist/assets' }]
+  }),
   // Allow bundling cjs modules (unlike webpack, rollup doesn't understand cjs)
   commonjs(),
 
   scss({
     output: "./dist/css/style.css",
     failOnError: true,
-  }),,
+  }),
   // Allow node_modules resolution, so you can use 'external' to control
   // which external modules to include in the bundle
   // https://github.com/rollup/rollup-plugin-node-resolve#usage

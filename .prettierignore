@@ -10,4 +10,4 @@ config/
 webpack.config.js
 webpack-test.config.js
 .eslintrc.js
-public/
+public-1/

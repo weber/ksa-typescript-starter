@@ -6,15 +6,14 @@
     ""
   ],
   "scripts": {
-    "start": "webpack serve --config config/webpack.config.js --port 3335  --inline --progress --content-base app-test/ --mode development",
+    "start": "webpack serve --config config/webpack.config.js  --inline --progress  --mode development",
     "cleanup": "shx rm -rf dist",
     "prebuild": "npm run cleanup && npm run verify:build",
     "verify:build": "npm run verify",
     "compile": "rollup -c config/rollup.config.js && rollup -c config/rollup.config.js --environment NODE_ENV:production",
-    "build": "tsc --project tsconfig.production.json && yarn run compile",
+    "build": "tsc --project tsconfig.production.json && npm run compile",
     "postbuild": "node scripts/copy && npm run size",
     "compodoc": "compodoc -p tsconfig.json",
-    "docs": "typedoc src/index.ts --theme ./node_modules/typedoc-neo-theme/bin/default --excludePrivate  --exclude \"**/src/**/*.spec.*\" --out docs src/",
     "test": "jest  -c ./config/jest.config.js",
     "test:watch": "npm t -- --watch",
     "test:coverage": "npm t -- --coverage",
@@ -30,7 +29,7 @@
     "release": "standard-version",
     "postrelease": "node scripts/copy && node scripts/build && npm run release:azure && npm run release:pub",
     "release:azure": "git push --no-verify --follow-tags origin master",
-    "release:pub": "cd ./dist && pnpm pack && npm publish",
+    "release:pub": "cd ./dist && npm pack && npm publish",
     "release:npm": "npm publish dist",
     "release:preflight": "npm pack ./dist --dry-run",
     "size": "node scripts/file-size ./dist/bundles/index.umd.min.js ./dist/bundles/index.esm.min.js"
@@ -50,7 +49,7 @@
   "engines": {
     "node": ">=12",
     "npm": ">=6.0",
-    "yarn": "^1.0"
+    "yarn": ">=1.0"
   },
   "wallaby": {
     "autoDetect": true
@@ -70,7 +69,6 @@
     }
   },
   "dependencies": {
-    "@compodoc/compodoc": "1.1.14",
     "date-fns": "^2.22.1",
     "fp-ts": "^2.10.5",
     "ramda": "^0.27.1",
@@ -81,6 +79,7 @@
     "@angular-eslint/eslint-plugin": "^12.2.0",
     "@angular/compiler": "^12.1.1",
     "@babel/cli": "^7.14.5",
+    "@compodoc/compodoc": "1.1.14",
     "@babel/core": "^7.14.6",
     "@babel/plugin-proposal-class-properties": "^7.14.5",
     "@babel/plugin-proposal-object-rest-spread": "^7.14.7",
@@ -145,6 +144,7 @@
     "prettier": "^2.3.2",
     "pretty-bytes": "^5.6.0",
     "rollup": "^2.52.7",
+    "rollup-plugin-copy": "3.4.0",
     "rollup-plugin-scss": "3",
     "rollup-plugin-sourcemaps": "^0.6.3",
     "rollup-plugin-terser": "^7.0.2",
@@ -158,8 +158,6 @@
     "ts-jest": "^27.0.3",
     "ts-loader": "9.2.3",
     "tslib": "^2.3.0",
-    "typedoc": "^0.21.2",
-    "typedoc-neo-theme": "1.1.1",
     "typescript": "^4.3.5",
     "typescript-eslint-language-service": "4.1.4",
     "webpack": "^5.43.0",
