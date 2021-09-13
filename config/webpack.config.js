@@ -13,20 +13,31 @@ module.exports = {
 
 
   devServer: {
-    contentBase: [path.join(__dirname, '../app-test'), path.join(__dirname, '../src/assets')],
+    static: [
+      {
+        directory: path.join(__dirname, '../app-test'),
+      },
+      {
+        directory: path.join(__dirname, '../src/assets'),
+      },
+    ],
     compress: true,
+    hot: true,
     port: 9000
   },
-    entry: {
-        'main': './main.ts'
-    },
+  stats: {
+    orphanModules: false,
+    errorStack: false,
+  },
+  entry: {
+      'main': './main.ts'
+  },
+  output: {
+      filename: '[name].bundle.js',
+      path: DESTINATION
+  },
 
-    output: {
-        filename: '[name].bundle.js',
-        path: DESTINATION
-    },
-
-    resolve: {
+  resolve: {
         extensions: ['.ts', '.js', '.scss', 'css'],
         modules: [
             ROOT,
@@ -91,7 +102,6 @@ module.exports = {
         filename: "[name].css",
         chunkFilename: "[id].css",
       }),
-      new webpack.HotModuleReplacementPlugin(),
       new webpack.DefinePlugin({
         'VERSION': `'${version}'`,
         'NAMEAPP': `'${nameApp}'`
