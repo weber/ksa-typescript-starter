@@ -1,0 +1,5 @@
+{
+  "commitUrlFormat": "http://cl-tfs2018:8080/tfs/CK-11/WebDev/_git/WebMag/commit/{{hash}}",
+  "issueUrlFormat": "http://cl-tfs2018:8080/tfs/CK-11/Development/_queries/edit/{{id}}/?triage=true",
+  "compareUrlFormat": "http://cl-tfs2018:8080/tfs/CK-11/WebDev/_git/WebMag?path=%2FCHANGELOG.md&version=GT{{currentTag}}"
+}
