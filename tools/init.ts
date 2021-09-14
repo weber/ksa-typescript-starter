@@ -14,33 +14,25 @@ const rmDirs = [
   ".git"
 ]
 const rmFiles = [
-  ".all-contributorsrc",
   ".gitattributes",
-  "tools/init.ts"
+  "tools/init.ts",
+  "tools"
 ]
 const modifyFiles = [
-  "LICENSE",
-  "package.json",
-  "rollup.config.ts",
-  "test/library.test.ts",
-  "tools/gh-pages-publish.ts"
-]
-const renameFiles = [
-  ["src/library.ts", "src/--libraryname--.ts"],
-  ["test/library.test.ts", "test/--libraryname--.test.ts"]
+  "package.json"
 ]
 
 const _promptSchemaLibraryName = {
   properties: {
     library: {
       description: colors.cyan(
-        "What do you want the library to be called? (use kebab-case)"
+        "Как вы хотите называть библиотеку? (используйте kebab-case)"
       ),
       pattern: /^[a-z]+(\-[a-z]+)*$/,
       type: "string",
       required: true,
       message:
-        '"kebab-case" uses lowercase letters, and hyphens for any punctuation'
+        '"kebab-case" использует строчные буквы и дефисы для любых знаков препинания'
     }
   }
 }
@@ -49,14 +41,14 @@ const _promptSchemaLibrarySuggest = {
   properties: {
     useSuggestedName: {
       description: colors.cyan(
-        'Would you like it to be called "' +
+        'Вы бы хотели, чтобы это называлось "' +
           libraryNameSuggested() +
           '"? [Yes/No]'
       ),
       pattern: /^(y(es)?|n(o)?)$/i,
       type: "string",
       required: true,
-      message: 'You need to type "Yes" or "No" to continue...'
+      message: 'Вам нужно ввести "Yes" или "No", чтобы продолжить....'
     }
   }
 }
@@ -68,14 +60,14 @@ _prompt.message = ""
 process.stdout.write('\x1B[2J\x1B[0f');
 
 if (!which("git")) {
-  console.log(colors.red("Sorry, this script requires git"))
+  console.log(colors.red("Извините, для этого скрипта требуется git"))
   removeItems()
   process.exit(1)
 }
 
 // Say hi!
 console.log(
-  colors.cyan("Hi! You're almost ready to make the next great TypeScript library.")
+  colors.cyan("Привет! Вы почти готовы к созданию следующей замечательной библиотеки TypeScript.")
 )
 
 // Generate the library name and start the tasks
@@ -99,7 +91,7 @@ if (process.env.CI == null) {
 function libraryNameCreate() {
   _prompt.get(_promptSchemaLibraryName, (err: any, res: any) => {
     if (err) {
-      console.log(colors.red("Sorry, there was an error building the workspace :("))
+      console.log(colors.red("К сожалению, при создании рабочей области произошла ошибка :("))
       removeItems()
       process.exit(1)
       return
@@ -116,7 +108,7 @@ function libraryNameCreate() {
 function libraryNameSuggestedAccept() {
   _prompt.get(_promptSchemaLibrarySuggest, (err: any, res: any) => {
     if (err) {
-      console.log(colors.red("Sorry, you'll need to type the library name"))
+      console.log(colors.red("Извините, вам нужно ввести имя библиотеки"))
       libraryNameCreate()
     }
 
@@ -131,7 +123,7 @@ function libraryNameSuggestedAccept() {
 /**
  * The library name is suggested by looking at the directory name of the
  * tools parent directory and converting it to kebab-case
- * 
+ *
  * The regex for this looks for any non-word or non-digit character, or
  * an underscore (as it's a word character), and replaces it with a dash.
  * Any leading or trailing dashes are then removed, before the string is
@@ -149,7 +141,7 @@ function libraryNameSuggested() {
  * Checks if the suggested library name is the default, which is 'typescript-library-starter'
  */
 function libraryNameSuggestedIsDefault() {
-  if (libraryNameSuggested() === "typescript-library-starter") {
+  if (libraryNameSuggested() === "ksa-typescript-starter") {
     return true
   }
 
@@ -160,13 +152,13 @@ function libraryNameSuggestedIsDefault() {
 
 /**
  * Calls all of the functions needed to setup the library
- * 
+ *
  * @param libraryName
  */
 function setupLibrary(libraryName: string) {
   console.log(
     colors.cyan(
-      "\nThanks for the info. The last few changes are being made... hang tight!\n\n"
+      "\nСпасибо за информацию. Внесены последние несколько изменений ... держитесь!\n\n"
     )
   )
 
@@ -178,18 +170,16 @@ function setupLibrary(libraryName: string) {
 
   modifyContents(libraryName, username, usermail)
 
-  renameItems(libraryName)
-
   finalize()
 
-  console.log(colors.cyan("OK, you're all set. Happy coding!! ;)\n"))
+  console.log(colors.cyan("ОК, все готово. Удачного кодирования !!;)\n"))
 }
 
 /**
  * Removes items from the project that aren't needed after the initial setup
  */
 function removeItems() {
-  console.log(colors.underline.white("Removed"))
+  console.log(colors.underline.white("удален"))
 
   // The directories and files are combined here, to simplify the function,
   // as the 'rm' command checks the item type before attempting to remove it
@@ -202,13 +192,13 @@ function removeItems() {
 
 /**
  * Updates the contents of the template files with the library name or user details
- * 
- * @param libraryName 
- * @param username 
- * @param usermail 
+ *
+ * @param libraryName
+ * @param username
+ * @param usermail
  */
 function modifyContents(libraryName: string, username: string, usermail: string) {
-  console.log(colors.underline.white("Modified"))
+  console.log(colors.underline.white("Изменен"))
 
   let files = modifyFiles.map(f => path.resolve(__dirname, "..", f))
   try {
@@ -219,39 +209,19 @@ function modifyContents(libraryName: string, username: string, usermail: string)
     })
     console.log(colors.yellow(modifyFiles.join("\n")))
   } catch (error) {
-    console.error("An error occurred modifying the file: ", error)
+    console.error("Произошла ошибка при изменении файла: ", error)
   }
 
   console.log("\n")
 }
 
-/**
- * Renames any template files to the new library name
- * 
- * @param libraryName 
- */
-function renameItems(libraryName: string) {
-  console.log(colors.underline.white("Renamed"))
 
-  renameFiles.forEach(function(files) {
-    // Files[0] is the current filename
-    // Files[1] is the new name
-    let newFilename = files[1].replace(/--libraryname--/g, libraryName)
-    mv(
-      path.resolve(__dirname, "..", files[0]),
-      path.resolve(__dirname, "..", newFilename)
-    )
-    console.log(colors.cyan(files[0] + " => " + newFilename))
-  })
-
-  console.log("\n")
-}
 
 /**
  * Calls any external programs to finish setting up the library
  */
 function finalize() {
-  console.log(colors.underline.white("Finalizing"))
+  console.log(colors.underline.white("Завершение"))
 
   // Recreate Git folder
   let gitInitOutput = exec('git init "' + path.resolve(__dirname, "..") + '"', {
@@ -267,14 +237,14 @@ function finalize() {
   delete pkg.scripts.postinstall
 
   writeFileSync(jsonPackage, JSON.stringify(pkg, null, 2))
-  console.log(colors.green("Postinstall script has been removed"))
+  console.log(colors.green("Сценарий постинсталляции удален"))
 
   // Initialize Husky
   fork(
     path.resolve(__dirname, "..", "node_modules", "husky", "bin", "install"),
     { silent: true }
   );
-  console.log(colors.green("Git hooks set up"))
+  console.log(colors.green("Настроены хуки Git"))
 
   console.log("\n")
 }
