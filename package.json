@@ -1,5 +1,5 @@
 {
-  "name": "@monitel/my-class",
+  "name": "--libraryname--",
   "version": "0.1.0",
   "description": "auth ",
   "keywords": [
@@ -8,6 +8,7 @@
   "scripts": {
     "start": "webpack serve --config config/webpack.config.js  --progress  --mode development",
     "cleanup": "shx rm -rf dist",
+    "postinstall": "ts-node tools/init",
     "prebuild": "npm run cleanup && npm run verify:build",
     "verify:build": "npm run verify",
     "compile": "rollup -c config/rollup.config.js && rollup -c config/rollup.config.js --environment NODE_ENV:production",
@@ -43,11 +44,11 @@
     "type": "git",
     "url": ""
   },
-  "author": "Кириченко Сергей <Sergey.Kirichenko@monitel.com>",
+  "author": "--username-- <--usermail-->",
   "license": "Apache License",
   "private": true,
   "engines": {
-    "node": ">=12",
+    "node": ">=14",
     "npm": ">=6.0",
     "yarn": ">=1.0"
   },
@@ -144,12 +145,19 @@
     "postcss-loader": "6.1.1",
     "prettier": "^2.4.0",
     "pretty-bytes": "^5.6.0",
+    "rimraf": "^3.0.2",
+    "coveralls": "^3.1.1",
+    "cross-env": "~7.0.3",
+    "colors": "^1.4.0",
+    "prompt": "^1.2.0",
+    "replace-in-file": "^6.2.0",
     "rollup": "^2.56.3",
     "rollup-plugin-copy": "3.4.0",
     "rollup-plugin-scss": "3",
     "rollup-plugin-sourcemaps": "^0.6.3",
     "rollup-plugin-terser": "^7.0.2",
     "sass": "1.39.2",
+    "shelljs": "^0.8.4",
     "sass-loader": "12.1.0",
     "shx": "^0.3.3",
     "source-map-loader": "^3.0.0",
@@ -158,6 +166,7 @@
     "sugarss": "4.0.1",
     "ts-jest": "^27.0.5",
     "ts-loader": "9.2.5",
+    "ts-node":  "^10.2.1",
     "tslib": "^2.3.1",
     "typescript": "^4.4.3",
     "typescript-eslint-language-service": "4.1.5",
