@@ -1,0 +1,35 @@
+{
+    "MyClass": {
+        "properties": {},
+        "methods": {
+            "prepareData": {
+                "comment": {
+                    "shortText": "умножает парамтры между собой",
+                    "returns": "сумма\n"
+                }
+            },
+            "my": {
+                "comment": {
+                    "shortText": "выводит текст hello",
+                    "returns": "hello\n"
+                }
+            }
+        },
+        "accessors": {
+            "title": {
+                "getter": {
+                    "comment": {
+                        "shortText": "getter title",
+                        "returns": "title\n"
+                    }
+                },
+                "setter": {
+                    "comment": {
+                        "shortText": "setter title",
+                        "returns": "title\n"
+                    }
+                }
+            }
+        }
+    }
+}

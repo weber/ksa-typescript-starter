@@ -5,7 +5,7 @@
 node_modules
 
 coverage
-lib
+
 esm5
 lib-esm
 esm2015
@@ -13,8 +13,8 @@ lib-fesm
 fesm
 umd
 bundles
-typings
-types
+
+
 docs
 dist
 
