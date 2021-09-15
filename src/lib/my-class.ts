@@ -1,28 +1,4 @@
-
-export interface IUserInfo {
-  name: string
-}
-enum EFoo {
-  SECOND = 10000,
-}
-
-
-interface IT1 {
-  func: (arg: string) => number
-}
-type T2 = {
-  func: (arg: boolean) => void
-}
-// this is equivalent to the overload
-interface IT3 {
-  func: ((arg: number) => void) &
-    ((arg: string) => void) &
-    ((arg: boolean) => void)
-}
-
 export class MyClass {
-
-  array2: Array<string> = []
   #title: string = ''
 
   constructor () {}
@@ -46,23 +22,11 @@ export class MyClass {
   }
 
   /**
-   * умножает парамтры между собой
+   * someMethod
    *
-   * @param {number} x значение
-   * @param {number} y значение
-   * @returns {number} сумма
+   * @deprecated
    */
-  prepareData (x: number, y: number): number {
-    return x + y
+  someMethod (): void {
+    console.log('someMethod()')
   }
-
-  /**
-   * выводит текст hello
-   *
-   * @returns {string} hello
-   */
-  my (): string {
-    return 'hello'
-  }
-
 }

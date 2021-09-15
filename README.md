@@ -1,12 +1,7 @@
-<p align="center">
-  <img src="" width="597" alt="ksa-typescript-starter">
-</p>
-
 # MyClass
 
 > text
 
-[![Build Status](https://travis-ci.org/weber/me-auth-session-client.svg?branch=master)](https://travis-ci.org/weber/me-auth-session-client)
 [![NPM version](https://img.shields.io/npm/v/me-auth-session-client.svg)](https://www.npmjs.com/package/me-auth-session-client)
 ![Downloads](https://img.shields.io/npm/dm/me-auth-session-client.svg)
 [![Standard Version](https://img.shields.io/badge/release-standard%20version-brightgreen.svg)](https://github.com/conventional-changelog/standard-version)
