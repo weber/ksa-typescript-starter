@@ -24,13 +24,14 @@ module.exports = {
     'plugin:import/warnings',
     'plugin:regexp/recommended',
     'plugin:total-functions/recommended',
-    //'plugin:etc/recommended',
+    'plugin:etc/recommended',
     //'plugin:prettier/recommended',
     //'prettier'
     //"plugin:functional/external-recommended",
     //"plugin:functional/recommended",
     "plugin:functional/stylitic",
-    "plugin:fp-ts/all"
+    "plugin:fp-ts/all",
+    "plugin:rxjs/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -266,7 +267,13 @@ module.exports = {
     "complexity": "off",
     "constructor-super": "error",
     "curly": "off",
+    "etc/no-misused-generics": "warn",
+    "etc/no-t": "warn",
+    "etc/throw-error": "error",
 
+    "rxjs/finnish": "error",
+    "rxjs/no-ignored-error": "warn",
+    "rxjs/no-ignored-observable": "error",
     "default-case": "error",
     "eol-last": "error",
     "eqeqeq": [
