@@ -3,12 +3,13 @@ const config = {
   rootDir: '..',
   testMatch: ['**/+(*.)+(spec|test).+(ts|js)?(x)'],
   testPathIgnorePatterns: ['/dist/', "/node_modules/"],
+  setupFilesAfterEnv: ["jest-extended/all"],
   coverageThreshold: {
     global: {
-      branches: 80,
-      functions: 80,
-      lines: 80,
-      statements: 80
+      branches: 75,
+      functions: 75,
+      lines: 75,
+      statements: 75
     },
   },
   moduleNameMapper: {

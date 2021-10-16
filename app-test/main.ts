@@ -1,4 +1,4 @@
-import {MyClass } from '../src/lib/my-class'
+import {MyClass } from '@lib/my-class'
 
 
 const instance: MyClass = new MyClass()
@@ -66,4 +66,9 @@ fromEvent(document, 'click')
   .pipe(
     scan((count: number) => count + INCREMENT_NUMBER, START_INCREMENT_NUMBER)
   )
-  .subscribe((count: number) => console.log(`Clicked ${count} times`))
+  .subscribe({
+    next: (count: number) => console.log(`Clicked ${count} times`),
+    error: (error: unknown) => {
+      console.error(error)
+    }
+  })

@@ -17,6 +17,7 @@ curly_bracket_next_line = false
 spaces_around_brackets = inside
 indent_brace_style = BSD KNF
 
+
 # HTML
 [*.html]
 quote_type = double

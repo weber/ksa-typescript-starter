@@ -2,7 +2,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": ".",
-    "rootDir": "src",
+
     "moduleResolution": "node",
     "module": "esnext",
     "target": "es2018",
@@ -27,7 +27,6 @@
     "stripInternal": true,
     "declaration": true,
     "declarationMap": false,
-
     "declarationDir": "dist/types",
     "outDir": "dist/esm2015",
     "resolveJsonModule": true,
@@ -38,7 +37,8 @@
       "node_modules/@types/ramda",
       "node_modules/ts-jest/dist/types",
       "node_modules/@types/jest",
-      "node_modules/@types/mocha"
+      "node_modules/@types/mocha",
+      "node_modules/jest-extended/types"
     ],
     "types": [ "rxjs", "node", "jest" ],
     "plugins": [
@@ -50,9 +50,6 @@
         "name": "typescript-eslint-language-service"
       }
     ],
-
-
-
     "paths": {
       "tslib" : ["./node_modules/tslib/tslib.d.ts"],
       "jszip": [
@@ -60,10 +57,11 @@
       ],
       "@root/*": ["src/*"],
       "@env/*": ["src/environments/*"],
-      "@lib/*": ["src/lib/*"]
+      "@lib/*": ["src/lib/*"],
+      "@test": ["config/*"]
     }
   },
-
+  "files": ["src/global.d.ts"],
   "include": [
     "src/**/*.ts",
     "src/**/*.d.ts"

@@ -26,7 +26,7 @@ module.exports = {
     'plugin:total-functions/recommended',
     'plugin:etc/recommended',
     //'plugin:prettier/recommended',
-    //'prettier'
+    'prettier',
     //"plugin:functional/external-recommended",
     //"plugin:functional/recommended",
     "plugin:functional/stylitic",
@@ -46,7 +46,6 @@ module.exports = {
     "eslint-plugin-unicorn",
     "eslint-plugin-import",
     "eslint-plugin-prefer-arrow",
-    "@angular-eslint/eslint-plugin",
     "eslint-plugin-jsdoc",
     "@typescript-eslint",
     "total-functions",
@@ -57,6 +56,7 @@ module.exports = {
     "jest"
   ],
   "rules": {
+    "total-functions/no-unsafe-type-assertion": "off",
     "require-jsdoc-except/require-jsdoc": [1, {
       "require": {
         "FunctionDeclaration": true,
@@ -67,8 +67,6 @@ module.exports = {
       },
       "ignore": ["constructor"],
     }],
-    "@angular-eslint/component-selector": "off",
-    "@angular-eslint/no-output-on-prefix": "off",
     "@typescript-eslint/adjacent-overload-signatures": "error",
     "@typescript-eslint/array-type": ["error", {
       "default": "generic"
@@ -114,7 +112,7 @@ module.exports = {
     "unicorn/prefer-switch": "error",
     "unicorn/prefer-includes": "error",
     "unicorn/prefer-default-parameters": "error",
-    "unicorn/no-abusive-eslint-disable": "error",
+    "unicorn/no-abusive-eslint-disable": "off",
     "unicorn/import-style": "error",
     "unicorn/import-index": "error",
     "@typescript-eslint/await-thenable": "error",
@@ -130,7 +128,7 @@ module.exports = {
       "variableDeclarationIgnoreFunction": true,
     }],
     "@typescript-eslint/ban-tslint-comment": "error",
-    "@typescript-eslint/ban-ts-comment": "error",
+    "@typescript-eslint/ban-ts-comment": "warn",
     "@typescript-eslint/brace-style": ["error"],
     "@typescript-eslint/method-signature-style": ["error"],
     "@typescript-eslint/ban-types": [
@@ -180,7 +178,7 @@ module.exports = {
         }
       }
     ],
-    "@typescript-eslint/member-ordering": "error",
+    "@typescript-eslint/member-ordering": "warn",
     "@typescript-eslint/naming-convention": [
       "error",
       {"selector": "variableLike", "format": ["camelCase"]},

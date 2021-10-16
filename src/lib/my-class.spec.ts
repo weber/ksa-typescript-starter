@@ -1,4 +1,9 @@
+
+import '../../config/testSetup'
+
 import {MyClass} from './my-class'
+
+
 
 let instance: MyClass = new MyClass()
 
@@ -7,6 +12,7 @@ describe('my-clss', () => {
     instance = new MyClass()
   })
   it('должен существовать', () => {
+    expect([]).toEqual(expect.toBeArray())
     expect(instance).toBeTruthy()
   })
 

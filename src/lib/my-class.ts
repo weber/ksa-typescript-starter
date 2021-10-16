@@ -1,9 +1,11 @@
+import {BehaviorSubject} from 'rxjs'
+
 
 export interface IUserInfo {
   name: string
 }
 enum EFoo {
-  SECOND = 10000,
+  SECOND = 10000
 }
 
 
@@ -20,12 +22,24 @@ interface IT3 {
     ((arg: boolean) => void)
 }
 
+/**
+ * Class MyClass что то делает
+ */
 export class MyClass {
 
   array2: Array<string> = []
   #title: string = ''
+  props$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false)
 
-  constructor () {}
+  constructor () {
+    this.props$
+      .subscribe({
+        next: (v: boolean) => console.log(v),
+        error: (error: unknown) => console.error(error),
+        // eslint-disable-next-line no-console
+        complete: () => console.info('complete')
+      })
+  }
 
   /**
    * getter title
@@ -52,7 +66,7 @@ export class MyClass {
    * @param {number} y значение
    * @returns {number} сумма
    */
-  prepareData (x: number, y: number): number {
+   prepareData (x: number, y: number): number {
     return x + y
   }
 
