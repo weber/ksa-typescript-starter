@@ -33,7 +33,8 @@
     "release:pub": "cd ./dist && npm pack && npm publish",
     "release:npm": "npm publish dist",
     "release:preflight": "npm pack ./dist --dry-run",
-    "size": "node scripts/file-size ./dist/bundles/index.umd.min.js ./dist/bundles/index.esm.min.js"
+    "size": "node scripts/file-size ./dist/bundles/index.umd.min.js ./dist/bundles/index.esm.min.js",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -85,7 +86,7 @@
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^13.0.5",
     "@rollup/plugin-replace": "^3.0.0",
-    "@rollup/plugin-typescript": "8.2.5",
+    "@rollup/plugin-typescript": "8.3.0",
     "@typed-f/either": "^0.3.8",
     "@typed-f/function": "^0.3.8",
     "@typed-f/lens": "^0.3.8",
@@ -117,7 +118,7 @@
     "eslint-plugin-fp-ts": "0.2.1",
     "eslint-plugin-functional": "3.7.2",
     "eslint-plugin-import": "^2.25.2",
-    "eslint-plugin-jest": "^25.0.6",
+    "eslint-plugin-jest": "^25.2.1",
     "eslint-plugin-jsdoc": "36.1.1",
     "eslint-plugin-prefer-arrow": "^1.2.3",
     "eslint-plugin-prettier": "^4.0.0",
@@ -136,6 +137,7 @@
     "jest-watch-typeahead": "^1.0.0",
     "jszip": "3.7.1",
     "kleur": "^4.1.4",
+    "lint-staged": "11.2.3",
     "mini-css-extract-plugin": "2.4.2",
     "node-sass": "6.0.1",
     "postcss-loader": "6.2.0",
@@ -157,7 +159,7 @@
     "standard-version": "^9.3.1",
     "style-loader": "3.3.0",
     "sugarss": "4.0.1",
-    "ts-jest": "^27.0.6",
+    "ts-jest": "^27.0.7",
     "ts-loader": "9.2.6",
     "ts-node": "^10.3.0",
     "tslib": "^2.3.1",
@@ -168,8 +170,12 @@
     "webpack-config-utils": "^2.3.1",
     "webpack-dev-server": "4.3.1"
   },
+  "lint-staged": {
+    "*.ts": "eslint --cache --fix"
+  },
   "husky": {
     "hooks": {
+      "pre-commit": "npx lint-staged",
       "pre-push": "npm run style && npm test -- --bail --onlyChanged",
       "commit-msg": "commitlint  -E HUSKY_GIT_PARAMS"
     }
