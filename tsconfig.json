@@ -9,6 +9,7 @@
       "dom",
       "es2020"
     ],
+    "isolatedModules": false,
     "strict": true,
     "strictNullChecks": true,
     "noUncheckedIndexedAccess": true,
@@ -36,6 +37,7 @@
       "node_modules/@types/ramda",
       "node_modules/ts-jest/dist/types",
       "node_modules/@types/jest",
+      "node_modules/jest-extended/types",
       "node_modules/@types/mocha"
     ],
     "types": [ "rxjs", "node", "jest" ],
@@ -48,9 +50,6 @@
         "name": "typescript-eslint-language-service"
       }
     ],
-
-
-
     "paths": {
       "tslib" : ["./node_modules/tslib/tslib.d.ts"],
       "jszip": [
@@ -58,10 +57,11 @@
       ],
       "@root/*": ["src/*"],
       "@env/*": ["src/environments/*"],
-      "@lib/*": ["src/lib/*"]
+      "@lib/*": ["src/lib/*"],
+      "@test": ["config/*"]
     }
   },
-
+  "files": ["src/global.d.ts"],
   "include": [
     "**/*.spec.ts",
     "src/**/*.ts",

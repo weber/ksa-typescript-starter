@@ -8,8 +8,10 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "noEmit": true,
-    "importHelpers": false
+    "importHelpers": false,
+
   },
+  "files": ["global.d.ts"],
   "include": [
     "."
   ]

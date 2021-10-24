@@ -1,7 +1,45 @@
-export class MyClass {
-  #title: string = ''
+import {BehaviorSubject} from 'rxjs'
 
-  constructor () {}
+
+export interface IUserInfo {
+  name: string
+}
+enum EFoo {
+  SECOND = 10000
+}
+
+
+interface IT1 {
+  func: (arg: string) => number
+}
+type T2 = {
+  func: (arg: boolean) => void
+}
+// this is equivalent to the overload
+interface IT3 {
+  func: ((arg: number) => void) &
+    ((arg: string) => void) &
+    ((arg: boolean) => void)
+}
+
+/**
+ * Class MyClass что то делает
+ */
+export class MyClass {
+
+  array2: Array<string> = []
+  #title: string = ''
+  props$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false)
+
+  constructor () {
+    this.props$
+      .subscribe({
+        next: (v: boolean) => console.log(v),
+        error: (error: unknown) => console.error(error),
+        // eslint-disable-next-line no-console
+        complete: () => console.info('complete')
+      })
+  }
 
   /**
    * getter title
@@ -22,11 +60,23 @@ export class MyClass {
   }
 
   /**
-   * someMethod
+   * умножает парамтры между собой
    *
-   * @deprecated
+   * @param {number} x значение
+   * @param {number} y значение
+   * @returns {number} сумма
    */
-  someMethod (): void {
-    console.log('someMethod()')
+   prepareData (x: number, y: number): number {
+    return x + y
   }
+
+  /**
+   * выводит текст hello
+   *
+   * @returns {string} hello
+   */
+  my (): string {
+    return 'hello'
+  }
+
 }

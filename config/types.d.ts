@@ -1,3 +1,4 @@
+
 // ===== JEST ====
 export type TsJestConfig = import('ts-jest/dist/types').TsJestConfig
 // export type JestConfig = Partial<jest.ProjectConfig & jest.GlobalConfig>
