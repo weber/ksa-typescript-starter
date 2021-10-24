@@ -92,7 +92,6 @@ module.exports = {
               },*/
               'postcss-loader',
               // Compiles Sass to CSS
-              "sass-loader",
             ],
           }
         ]

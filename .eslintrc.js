@@ -23,13 +23,14 @@ module.exports = {
     'plugin:sonarjs/recommended',
     'plugin:import/warnings',
     'plugin:regexp/recommended',
+
     'plugin:total-functions/recommended',
     'plugin:etc/recommended',
-    //'plugin:prettier/recommended',
     'prettier',
+    //'plugin:prettier/recommended',
     //"plugin:functional/external-recommended",
     //"plugin:functional/recommended",
-    "plugin:functional/stylitic",
+    // "plugin:functional/stylitic",
     "plugin:fp-ts/all",
     "plugin:rxjs/recommended"
   ],
